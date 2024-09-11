@@ -1,0 +1,53 @@
+.root {
+  -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.application {
+  -fx-background-color: linear-gradient(to bottom, #ff5e57, #9d50bb);
+  -fx-background-radius: 10px;
+  -fx-pref-height: 300px;
+  -fx-pref-width: 400px;
+  -fx-padding: 30px;
+}
+
+.text-box {
+  -fx-alignment: center;
+  -fx-background-color: rgba(0, 0, 0, 0.5);
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-background-radius: 10px;
+  -fx-spacing: 10px;
+}
+
+.title {
+  -fx-font-size: 26px;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+  -fx-translate-y: 20px;
+}
+
+.subtitle {
+  -fx-pref-width: 320px;
+  -fx-font-size: 16px;
+  -fx-text-alignment: center;
+  -fx-text-fill: white;
+  -fx-translate-y: 20px;
+  -fx-wrap-text: true;
+}
+
+#celebrate {
+  -fx-background-color: linear-gradient(to right, #ff5e57, #9d50bb);
+  -fx-background-radius: 50px;
+  -fx-border-color: white;
+  -fx-border-radius: 50px;
+  -fx-border-width: 1px;
+  -fx-cursor: hand;
+  -fx-font-size: 16px;
+  -fx-pref-height: 50px;
+  -fx-pref-width: 130px;
+  -fx-text-fill: white;
+  -fx-translate-y: 20px;
+}
+
+#celebrate:hover {
+  -fx-background-color: linear-gradient(to right, #ff7e67, #a466df);
+}
