@@ -1,4 +1,4 @@
-# Project Title
+# JavaFX Deploy Test
 
 ## Table of Contents
 
@@ -9,38 +9,155 @@
 
 ## About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+This project is a JavaFX application that demonstrates how to deploy and run a JavaFX project using Maven. It includes all necessary dependencies and plugins for building, packaging, and running the application.
 
 ## Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get your JavaFX project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+You need to have the following installed:
 
-```
-Give examples
+- JDK 11 or higher
+- Maven 3.6.0 or higher
+
+To verify your installations, run the following commands in your terminal:
+
+```bash
+java -version
+mvn -version
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+Follow these steps to set up the project:
 
-Say what the step will be
+1. Clone the repository to your local machine:
 
-```
-Give the example
-```
+   ```bash
+   git clone https://github.com/kloneborn/javafx-deploy-test.git
+   cd javafx-deploy-test
+   ```
 
-And repeat
+2. Install dependencies and build the project:
 
-```
-until finished
-```
+   ```bash
+   mvn install
+   ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+3. Run the JavaFX application:
+   ```bash
+   mvn javafx:run
+   ```
+
+Once the project is built, a `.jar` file will be generated in the `/target/` directory.
+
+### Script for Running
+
+To make it easier to run the application, create a script file depending on your operating system:
+
+- **Windows (.cmd):**
+
+  ```cmd
+  @echo off
+  java -jar target\javafx-deploy-test-1.0-SNAPSHOT.jar
+  ```
+
+- **PowerShell (.ps1):**
+
+  ```powershell
+  java -jar .target\javafx-deploy-test-1.0-SNAPSHOT.jar
+  ```
+
+- **Linux/MacOS (.bash):**
+  ```bash
+  java -jar target/javafx-deploy-test-1.0-SNAPSHOT.jar
+  ```
+
+You will need to adjust the file based on your operating system to ensure the JAR file is properly located and executed.
 
 ## Usage <a name = "usage"></a>
 
-Add notes about how to use the system.
+To use the application, follow these instructions:
+
+- Make sure you have run the project as described in the "Getting Started" section.
+- If needed, modify the script for running the application on your specific system.
+
+## Project Maven Configuration
+
+Here is the `pom.xml` configuration for reference:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.kloneborn.github</groupId>
+    <artifactId>javafx-deploy-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>22</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>com.kloneborn.github/com.kloneborn.github.Launcher</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.kloneborn.github.Launcher</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
