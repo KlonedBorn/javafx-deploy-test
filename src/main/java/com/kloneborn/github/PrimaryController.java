@@ -29,12 +29,12 @@ public class PrimaryController {
     private SequentialTransition wobbleTransition;
 
     private Random random = new Random();
-    
+
     private static final double WOBBLE_ANGLE = 10;
 
     private static final double CONFETTI_BLAST_RADIUS = 60.0;
 
-    private static final int CONFETTI_PARTICLES = 32;
+    private static final int CONFETTI_PARTICLES = 25;
 
     private static final int CONFETTI_BURSTS = 8; // 5 random bursts
 
